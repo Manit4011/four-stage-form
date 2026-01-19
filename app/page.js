@@ -1,7 +1,15 @@
+"use client";
 import Image from "next/image";
 import { Button } from "@/components/ui/button"; // Optional: Use your UI button if desired
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
+  const router = useRouter();
+  useEffect(() => {
+    router.push("/enroll/step-1");
+  }, [router]);
+
   return (
     // Change bg-zinc-50 to bg-background and text-black to text-foreground
     <div className="flex min-h-screen items-center justify-center bg-background font-sans text-foreground">
