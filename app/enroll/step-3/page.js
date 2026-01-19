@@ -37,89 +37,128 @@ export default function Step3() {
     router.push("/enroll/review");
   };
 
+  if (!isLoaded) return null;
+
   return (
-    <div>
-      <ProgressBar step={3} />
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    // 1. Page Container
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      
+      {/* 2. Main Wrapper */}
+      <div className="w-full max-w-xl space-y-6">
         
-        {/* Address Card */}
-        <Card>
-          <CardHeader><CardTitle>Address Details</CardTitle></CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <Label>PIN Code</Label>
-                <Input {...register("pinCode")} placeholder="123456" />
-                {errors.pinCode && <p className="text-red-500 text-sm">{errors.pinCode.message}</p>}
-              </div>
-              <div>
-                <Label>City</Label>
-                <Input {...register("city")} />
-                {errors.city && <p className="text-red-500 text-sm">{errors.city.message}</p>}
-              </div>
-            </div>
-            <div>
-              <Label>State</Label>
-              <Input {...register("state")} />
-              {errors.state && <p className="text-red-500 text-sm">{errors.state.message}</p>}
-            </div>
-            <div>
-              <Label>Address Line</Label>
-              <Input {...register("address")} />
-              {errors.address && <p className="text-red-500 text-sm">{errors.address.message}</p>}
-            </div>
-          </CardContent>
-        </Card>
+        {/* Top Section: Progress & Title (Outside the individual cards for cleaner look) */}
+        <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 space-y-6">
+          <ProgressBar step={3} />
+          
+          <div className="text-center">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900">Final Details</h2>
+            <p className="text-sm text-gray-500 mt-2">
+              Address information and payment preferences.
+            </p>
+          </div>
 
-        {/* Guardian Card */}
-        <Card>
-          <CardHeader><CardTitle>Guardian Details</CardTitle></CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-                <Label>Guardian Name</Label>
-                <Input {...register("guardianName")} />
-                {errors.guardianName && <p className="text-red-500 text-sm">{errors.guardianName.message}</p>}
-            </div>
-            <div>
-                <Label>Guardian Mobile</Label>
-                <Input {...register("guardianMobile")} placeholder="9876543210" />
-                {errors.guardianMobile && <p className="text-red-500 text-sm">{errors.guardianMobile.message}</p>}
-            </div>
-          </CardContent>
-        </Card>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            
+            {/* Address Card - Styled as a flat section */}
+            <Card className="shadow-none border-gray-200 bg-gray-50/50">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base font-semibold text-gray-800">Address Details</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <Label className="text-gray-700">PIN Code</Label>
+                    <Input {...register("pinCode")} placeholder="123456" className="bg-white h-10" />
+                    {errors.pinCode && <p className="text-red-500 text-xs mt-1">{errors.pinCode.message}</p>}
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label className="text-gray-700">City</Label>
+                    <Input {...register("city")} className="bg-white h-10" />
+                    {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city.message}</p>}
+                  </div>
+                </div>
+                <div className="space-y-1.5">
+                  <Label className="text-gray-700">State</Label>
+                  <Input {...register("state")} className="bg-white h-10" />
+                  {errors.state && <p className="text-red-500 text-xs mt-1">{errors.state.message}</p>}
+                </div>
+                <div className="space-y-1.5">
+                  <Label className="text-gray-700">Address Line</Label>
+                  <Input {...register("address")} placeholder="House No, Street, Landmark" className="bg-white h-10" />
+                  {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address.message}</p>}
+                </div>
+              </CardContent>
+            </Card>
 
-        {/* Payment Preferences */}
-        <Card>
-           <CardHeader><CardTitle>Payment Preference</CardTitle></CardHeader>
-           <CardContent className="grid grid-cols-2 gap-4">
-             <div>
-               <Label>Plan</Label>
-               <Select onValueChange={(v) => setValue("paymentPlan", v)} defaultValue={formData.paymentPlan}>
-                 <SelectTrigger><SelectValue placeholder="Select Plan" /></SelectTrigger>
-                 <SelectContent>
-                   {["Quarterly", "Half-Yearly", "Annual"].map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
-                 </SelectContent>
-               </Select>
-               {errors.paymentPlan && <p className="text-red-500 text-sm">{errors.paymentPlan.message}</p>}
-             </div>
-             <div>
-               <Label>Mode</Label>
-               <Select onValueChange={(v) => setValue("paymentMode", v)} defaultValue={formData.paymentMode}>
-                 <SelectTrigger><SelectValue placeholder="Select Mode" /></SelectTrigger>
-                 <SelectContent>
-                   {["UPI", "Card", "NetBanking"].map(m => <SelectItem key={m} value={m}>{m}</SelectItem>)}
-                 </SelectContent>
-               </Select>
-               {errors.paymentMode && <p className="text-red-500 text-sm">{errors.paymentMode.message}</p>}
-             </div>
-           </CardContent>
-        </Card>
+            {/* Guardian Card */}
+            <Card className="shadow-none border-gray-200 bg-gray-50/50">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base font-semibold text-gray-800">Guardian Details</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                        <Label className="text-gray-700">Guardian Name</Label>
+                        <Input {...register("guardianName")} className="bg-white h-10" />
+                        {errors.guardianName && <p className="text-red-500 text-xs mt-1">{errors.guardianName.message}</p>}
+                    </div>
+                    <div className="space-y-1.5">
+                        <Label className="text-gray-700">Guardian Mobile</Label>
+                        <Input {...register("guardianMobile")} placeholder="9876543210" className="bg-white h-10" />
+                        {errors.guardianMobile && <p className="text-red-500 text-xs mt-1">{errors.guardianMobile.message}</p>}
+                    </div>
+                </div>
+              </CardContent>
+            </Card>
 
-        <div className="flex gap-3">
-          <Button type="button" variant="outline" onClick={() => router.back()}>Back</Button>
-          <Button type="submit" className="flex-1">Next: Review</Button>
+            {/* Payment Preferences */}
+            <Card className="shadow-none border-gray-200 bg-gray-50/50">
+               <CardHeader className="pb-3">
+                   <CardTitle className="text-base font-semibold text-gray-800">Payment Preference</CardTitle>
+               </CardHeader>
+               <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <div className="space-y-1.5">
+                   <Label className="text-gray-700">Plan Duration</Label>
+                   <Select onValueChange={(v) => setValue("paymentPlan", v)} defaultValue={formData.paymentPlan}>
+                     <SelectTrigger className="bg-white h-10"><SelectValue placeholder="Select Plan" /></SelectTrigger>
+                     <SelectContent>
+                       {["Quarterly", "Half-Yearly", "Annual"].map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
+                     </SelectContent>
+                   </Select>
+                   {errors.paymentPlan && <p className="text-red-500 text-xs mt-1">{errors.paymentPlan.message}</p>}
+                 </div>
+                 <div className="space-y-1.5">
+                   <Label className="text-gray-700">Payment Mode</Label>
+                   <Select onValueChange={(v) => setValue("paymentMode", v)} defaultValue={formData.paymentMode}>
+                     <SelectTrigger className="bg-white h-10"><SelectValue placeholder="Select Mode" /></SelectTrigger>
+                     <SelectContent>
+                       {["UPI", "Card", "NetBanking"].map(m => <SelectItem key={m} value={m}>{m}</SelectItem>)}
+                     </SelectContent>
+                   </Select>
+                   {errors.paymentMode && <p className="text-red-500 text-xs mt-1">{errors.paymentMode.message}</p>}
+                 </div>
+               </CardContent>
+            </Card>
+
+            <div className="flex gap-4 pt-2">
+              <Button 
+                type="button" 
+                variant="outline" 
+                onClick={() => router.back()}
+                className="w-1/3 h-11"
+              >
+                Back
+              </Button>
+              <Button 
+                type="submit" 
+                className="flex-1 h-11"
+              >
+                Review & Submit
+              </Button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

@@ -21,7 +21,7 @@ export default function Step1() {
     defaultValues: formData // Pre-fill if user comes back
   });
 
-  // Manually set values for Select components (since they don't use native inputs)
+  // Manually set values for Select components
   useEffect(() => {
     if (formData.studentClass) setValue("studentClass", formData.studentClass);
     if (formData.board) setValue("board", formData.board);
@@ -29,80 +29,130 @@ export default function Step1() {
   }, [formData, setValue]);
 
   const onSubmit = (data) => {
-    updateFormData(data); // Save to Context
-    router.push("/enroll/step-2"); // Navigate to Next
+    updateFormData(data); 
+    router.push("/enroll/step-2");
   };
 
   return (
-    <div>
-      <ProgressBar step={1} />
-      <h2 className="text-xl font-semibold mb-4">Student Details</h2>
+    // 1. Page Container: Centers content, adds light gray bg
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      {/* 2. Card Container: White background, shadow, rounded corners, max-width */}
+      <div className="w-full max-w-lg space-y-6 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
         
-        {/* Full Name */}
-        <div>
-          <Label>Full Name</Label>
-          <Input {...register("fullName")} placeholder="John Doe" />
-          {errors.fullName && <p className="text-red-500 text-sm">{errors.fullName.message}</p>}
+        {/* Progress Bar Wrapper */}
+        <div className="mb-6">
+          <ProgressBar step={1} />
         </div>
 
-        {/* Email */}
-        <div>
-          <Label>Email</Label>
-          <Input {...register("email")} placeholder="john@example.com" />
-          {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+        {/* Header Section */}
+        <div className="text-center">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+            Student Details
+          </h2>
+          <p className="text-sm text-gray-500 mt-2">
+            Please enter your personal and academic information.
+          </p>
         </div>
-
-        {/* Mobile */}
-        <div>
-          <Label>Mobile Number</Label>
-          <div className="flex items-center">
-            <span className="bg-gray-100 border border-r-0 px-3 py-2 rounded-l-md text-sm">+91</span>
-            <Input {...register("mobile")} className="rounded-l-none" placeholder="9876543210" />
+        
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          
+          {/* Full Name */}
+          <div className="space-y-1.5">
+            <Label htmlFor="fullName" className="text-gray-700">Full Name</Label>
+            <Input 
+              id="fullName"
+              {...register("fullName")} 
+              placeholder="John Doe" 
+              className="h-10" // Explicit height for consistency
+            />
+            {errors.fullName && <p className="text-red-500 text-xs font-medium mt-1">{errors.fullName.message}</p>}
           </div>
-          {errors.mobile && <p className="text-red-500 text-sm">{errors.mobile.message}</p>}
-        </div>
 
-        {/* Class Selection */}
-        <div>
-          <Label>Class</Label>
-          <Select onValueChange={(val) => setValue("studentClass", val)} defaultValue={formData.studentClass}>
-            <SelectTrigger><SelectValue placeholder="Select Class" /></SelectTrigger>
-            <SelectContent>
-              {["9", "10", "11", "12"].map((c) => <SelectItem key={c} value={c}>Class {c}</SelectItem>)}
-            </SelectContent>
-          </Select>
-          {errors.studentClass && <p className="text-red-500 text-sm">{errors.studentClass.message}</p>}
-        </div>
+          {/* Email */}
+          <div className="space-y-1.5">
+            <Label htmlFor="email" className="text-gray-700">Email Address</Label>
+            <Input 
+              id="email"
+              {...register("email")} 
+              placeholder="john@example.com" 
+              className="h-10"
+            />
+            {errors.email && <p className="text-red-500 text-xs font-medium mt-1">{errors.email.message}</p>}
+          </div>
 
-        {/* Board & Language (Simplified for brevity, similar structure to Class) */}
-        <div className="grid grid-cols-2 gap-4">
-           <div>
-            <Label>Board</Label>
-            <Select onValueChange={(val) => setValue("board", val)} defaultValue={formData.board}>
-              <SelectTrigger><SelectValue placeholder="Select Board" /></SelectTrigger>
+          {/* Mobile */}
+          <div className="space-y-1.5">
+            <Label htmlFor="mobile" className="text-gray-700">Mobile Number</Label>
+            <div className="flex items-center">
+              {/* Prefix Stylization */}
+              <span className="flex items-center justify-center bg-gray-100 border border-input border-r-0 px-3 h-10 rounded-l-md text-sm text-gray-500 font-medium">
+                +91
+              </span>
+              <Input 
+                id="mobile"
+                {...register("mobile")} 
+                className="rounded-l-none h-10 focus-visible:ring-0 focus-visible:ring-offset-0 relative z-10" 
+                placeholder="9876543210" 
+              />
+            </div>
+            {errors.mobile && <p className="text-red-500 text-xs font-medium mt-1">{errors.mobile.message}</p>}
+          </div>
+
+          {/* Class Selection */}
+          <div className="space-y-1.5">
+            <Label className="text-gray-700">Class</Label>
+            <Select onValueChange={(val) => setValue("studentClass", val)} defaultValue={formData.studentClass}>
+              <SelectTrigger className="h-10">
+                <SelectValue placeholder="Select Class" />
+              </SelectTrigger>
               <SelectContent>
-                {["CBSE", "ICSE", "State Board"].map((b) => <SelectItem key={b} value={b}>{b}</SelectItem>)}
+                {["9", "10", "11", "12"].map((c) => (
+                  <SelectItem key={c} value={c}>Class {c}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
-            {errors.board && <p className="text-red-500 text-sm">{errors.board.message}</p>}
-           </div>
+            {errors.studentClass && <p className="text-red-500 text-xs font-medium mt-1">{errors.studentClass.message}</p>}
+          </div>
 
-           <div>
-            <Label>Language</Label>
-            <Select onValueChange={(val) => setValue("language", val)} defaultValue={formData.language}>
-              <SelectTrigger><SelectValue placeholder="Preferred Language" /></SelectTrigger>
-              <SelectContent>
-                {["English", "Hindi", "Hinglish"].map((l) => <SelectItem key={l} value={l}>{l}</SelectItem>)}
-              </SelectContent>
-            </Select>
-            {errors.language && <p className="text-red-500 text-sm">{errors.language.message}</p>}
-           </div>
-        </div>
+          {/* Board & Language Grid */}
+          <div className="grid grid-cols-2 gap-4">
+             <div className="space-y-1.5">
+              <Label className="text-gray-700">Board</Label>
+              <Select onValueChange={(val) => setValue("board", val)} defaultValue={formData.board}>
+                <SelectTrigger className="h-10">
+                  <SelectValue placeholder="Select Board" />
+                </SelectTrigger>
+                <SelectContent>
+                  {["CBSE", "ICSE", "State Board"].map((b) => (
+                    <SelectItem key={b} value={b}>{b}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.board && <p className="text-red-500 text-xs font-medium mt-1">{errors.board.message}</p>}
+             </div>
 
-        <Button type="submit" className="w-full">Next: Academic Details</Button>
-      </form>
+             <div className="space-y-1.5">
+              <Label className="text-gray-700">Language</Label>
+              <Select onValueChange={(val) => setValue("language", val)} defaultValue={formData.language}>
+                <SelectTrigger className="h-10">
+                  <SelectValue placeholder="Language" />
+                </SelectTrigger>
+                <SelectContent>
+                  {["English", "Hindi", "Hinglish"].map((l) => (
+                    <SelectItem key={l} value={l}>{l}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.language && <p className="text-red-500 text-xs font-medium mt-1">{errors.language.message}</p>}
+             </div>
+          </div>
+
+          <Button type="submit" className="w-full h-11 text-base font-medium mt-2">
+            Next: Academic Details
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }
