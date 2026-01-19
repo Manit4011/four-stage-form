@@ -85,7 +85,7 @@ export default function Step2() {
           
           {/* Subjects - Styled as a Grid of Cards */}
           <div className="space-y-3">
-            <Label className="text-base font-medium text-gray-900">
+            <Label className="text-base font-medium text-gray-500">
               Subjects (Class {formData.studentClass})
             </Label>
             <div className="grid grid-cols-2 gap-3">
@@ -113,7 +113,7 @@ export default function Step2() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Exam Goal */}
             <div className="space-y-1.5">
-              <Label className="text-gray-700">Exam Goal</Label>
+              <Label className="text-gray-500">Exam Goal</Label>
               <Select onValueChange={(v) => setValue("examGoal", v)} defaultValue={formData.examGoal}>
                 <SelectTrigger className="h-10">
                   <SelectValue placeholder="Select Goal" />
@@ -129,7 +129,7 @@ export default function Step2() {
 
             {/* Study Hours */}
             <div className="space-y-1.5">
-              <Label className="text-gray-700">Weekly Hours</Label>
+              <Label className="text-gray-500">Weekly Hours</Label>
               <Input 
                 type="number" 
                 {...register("studyHours")} 
@@ -162,7 +162,7 @@ export default function Step2() {
             {hasScholarship && (
               <div className="bg-blue-50/50 p-5 rounded-lg border border-blue-100 space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
                   <div className="space-y-1.5">
-                    <Label className="text-gray-700">Last Exam Percentage</Label>
+                    <Label className="text-gray-500">Last Exam Percentage</Label>
                     <Input 
                       type="number" 
                       {...register("lastExamScore")} 
@@ -173,7 +173,7 @@ export default function Step2() {
                   </div>
                   
                   <div className="space-y-1.5">
-                    <Label className="text-gray-700">Achievements (Optional)</Label>
+                    <Label className="text-gray-500">Achievements (Optional)</Label>
                     <Textarea 
                       {...register("achievements")} 
                       placeholder="List any academic awards or competition wins..." 

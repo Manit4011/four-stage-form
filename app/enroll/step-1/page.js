@@ -59,7 +59,7 @@ export default function Step1() {
           
           {/* Full Name */}
           <div className="space-y-1.5">
-            <Label htmlFor="fullName" className="text-gray-700">Full Name</Label>
+            <Label htmlFor="fullName" className="text-gray-500">Full Name</Label>
             <Input 
               id="fullName"
               {...register("fullName")} 
@@ -71,7 +71,7 @@ export default function Step1() {
 
           {/* Email */}
           <div className="space-y-1.5">
-            <Label htmlFor="email" className="text-gray-700">Email Address</Label>
+            <Label htmlFor="email" className="text-gray-500">Email Address</Label>
             <Input 
               id="email"
               {...register("email")} 
@@ -83,7 +83,7 @@ export default function Step1() {
 
           {/* Mobile */}
           <div className="space-y-1.5">
-            <Label htmlFor="mobile" className="text-gray-700">Mobile Number</Label>
+            <Label htmlFor="mobile" className="text-gray-500">Mobile Number</Label>
             <div className="flex items-center">
               {/* Prefix Stylization */}
               <span className="flex items-center justify-center bg-gray-100 border border-input border-r-0 px-3 h-10 rounded-l-md text-sm text-gray-500 font-medium">
@@ -101,7 +101,7 @@ export default function Step1() {
 
           {/* Class Selection */}
           <div className="space-y-1.5">
-            <Label className="text-gray-700">Class</Label>
+            <Label className="text-gray-500">Class</Label>
             <Select onValueChange={(val) => setValue("studentClass", val)} defaultValue={formData.studentClass}>
               <SelectTrigger className="h-10">
                 <SelectValue placeholder="Select Class" />
@@ -118,7 +118,7 @@ export default function Step1() {
           {/* Board & Language Grid */}
           <div className="grid grid-cols-2 gap-4">
              <div className="space-y-1.5">
-              <Label className="text-gray-700">Board</Label>
+              <Label className="text-gray-500">Board</Label>
               <Select onValueChange={(val) => setValue("board", val)} defaultValue={formData.board}>
                 <SelectTrigger className="h-10">
                   <SelectValue placeholder="Select Board" />
@@ -133,7 +133,7 @@ export default function Step1() {
              </div>
 
              <div className="space-y-1.5">
-              <Label className="text-gray-700">Language</Label>
+              <Label className="text-gray-500">Language</Label>
               <Select onValueChange={(val) => setValue("language", val)} defaultValue={formData.language}>
                 <SelectTrigger className="h-10">
                   <SelectValue placeholder="Language" />
