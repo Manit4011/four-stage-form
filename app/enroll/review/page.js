@@ -65,14 +65,14 @@ export default function ReviewStep() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-        <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center space-y-6 animate-in zoom-in-95 duration-300">
+      <div className="min-h-screen  flex items-center justify-center p-4">
+        <div className="w-full max-w-md  p-8 rounded-xl shadow-lg border border-gray-100 text-center space-y-6 animate-in zoom-in-95 duration-300">
            <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
              <Check className="w-8 h-8" />
            </div>
            
            <div>
-             <h2 className="text-2xl font-bold text-gray-900">Registration Complete!</h2>
+             <h2 className="text-2xl font-bold ">Registration Complete!</h2>
              <p className="text-gray-500 mt-2">
                Thank you for enrolling. We have received your details.
              </p>
@@ -87,7 +87,7 @@ export default function ReviewStep() {
 
            <Button 
              onClick={() => window.location.href = '/enroll/step-1'} 
-             className="w-full h-11"
+             className="w-full h-11 bg-blue-500"
            >
              Start New Form
            </Button>
@@ -98,7 +98,7 @@ export default function ReviewStep() {
 
   return (
     // 1. Page Container
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen  flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       
       {/* 2. Main Wrapper */}
       <div className="w-full max-w-xl space-y-6">

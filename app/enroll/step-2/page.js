@@ -64,10 +64,10 @@ export default function Step2() {
 
   return (
     // 1. Page Container
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen  flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       
       {/* 2. Card Container */}
-      <div className="w-full max-w-lg space-y-6 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+      <div className="w-full max-w-lg space-y-6  p-8 rounded-xl shadow-lg border border-gray-100">
         
         <div className="mb-6">
           <ProgressBar step={2} />
@@ -75,7 +75,7 @@ export default function Step2() {
 
         {/* Header */}
         <div className="text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900">Academic Details</h2>
+          <h2 className="text-2xl font-bold tracking-tight ">Academic Details</h2>
           <p className="text-sm text-gray-500 mt-2">
             Customize your learning path and goals.
           </p>
@@ -93,7 +93,7 @@ export default function Step2() {
                 <div 
                   key={sub} 
                   className={`flex flex-row items-start space-x-3 space-y-0 rounded-md border p-3 shadow-sm transition-colors ${
-                    selectedSubjects.includes(sub) ? "border-black bg-gray-50" : "border-gray-200"
+                    selectedSubjects.includes(sub) ? "border-white" : "border-black"
                   }`}
                 >
                   <Checkbox 

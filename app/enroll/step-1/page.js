@@ -35,10 +35,10 @@ export default function Step1() {
 
   return (
     // 1. Page Container: Centers content, adds light gray bg
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen  flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       
       {/* 2. Card Container: White background, shadow, rounded corners, max-width */}
-      <div className="w-full max-w-lg space-y-6 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+      <div className="w-full max-w-lg space-y-6  p-8 rounded-xl shadow-lg border border-gray-100">
         
         {/* Progress Bar Wrapper */}
         <div className="mb-6">
@@ -47,7 +47,7 @@ export default function Step1() {
 
         {/* Header Section */}
         <div className="text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+          <h2 className="text-2xl font-bold tracking-tight ">
             Student Details
           </h2>
           <p className="text-sm text-gray-500 mt-2">

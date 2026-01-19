@@ -41,17 +41,17 @@ export default function Step3() {
 
   return (
     // 1. Page Container
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen  flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       
       {/* 2. Main Wrapper */}
       <div className="w-full max-w-xl space-y-6">
         
         {/* Top Section: Progress & Title (Outside the individual cards for cleaner look) */}
-        <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 space-y-6">
+        <div className=" p-8 rounded-xl shadow-lg border border-gray-100 space-y-6">
           <ProgressBar step={3} />
           
           <div className="text-center">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">Final Details</h2>
+            <h2 className="text-2xl font-bold tracking-tight ">Final Details</h2>
             <p className="text-sm text-gray-500 mt-2">
               Address information and payment preferences.
             </p>
@@ -60,30 +60,30 @@ export default function Step3() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             
             {/* Address Card - Styled as a flat section */}
-            <Card className="shadow-none border-gray-200 bg-gray-50/50">
+            <Card className="shadow-none border-gray-200 ">
               <CardHeader className="pb-3">
-                <CardTitle className="text-base font-semibold text-gray-800">Address Details</CardTitle>
+                <CardTitle className="text-base font-semibold ">Address Details</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <Label className="text-gray-700">PIN Code</Label>
+                    <Label className="">PIN Code</Label>
                     <Input {...register("pinCode")} placeholder="123456" className="bg-white h-10" />
                     {errors.pinCode && <p className="text-red-500 text-xs mt-1">{errors.pinCode.message}</p>}
                   </div>
                   <div className="space-y-1.5">
-                    <Label className="text-gray-700">City</Label>
+                    <Label className="">City</Label>
                     <Input {...register("city")} className="bg-white h-10" />
                     {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city.message}</p>}
                   </div>
                 </div>
                 <div className="space-y-1.5">
-                  <Label className="text-gray-700">State</Label>
+                  <Label className="">State</Label>
                   <Input {...register("state")} className="bg-white h-10" />
                   {errors.state && <p className="text-red-500 text-xs mt-1">{errors.state.message}</p>}
                 </div>
                 <div className="space-y-1.5">
-                  <Label className="text-gray-700">Address Line</Label>
+                  <Label className="">Address Line</Label>
                   <Input {...register("address")} placeholder="House No, Street, Landmark" className="bg-white h-10" />
                   {errors.address && <p className="text-red-500 text-xs mt-1">{errors.address.message}</p>}
                 </div>
@@ -91,19 +91,19 @@ export default function Step3() {
             </Card>
 
             {/* Guardian Card */}
-            <Card className="shadow-none border-gray-200 bg-gray-50/50">
+            <Card className="shadow-none border-gray-200 ">
               <CardHeader className="pb-3">
-                <CardTitle className="text-base font-semibold text-gray-800">Guardian Details</CardTitle>
+                <CardTitle className="text-base font-semibold ">Guardian Details</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                        <Label className="text-gray-700">Guardian Name</Label>
+                        <Label className="">Guardian Name</Label>
                         <Input {...register("guardianName")} className="bg-white h-10" />
                         {errors.guardianName && <p className="text-red-500 text-xs mt-1">{errors.guardianName.message}</p>}
                     </div>
                     <div className="space-y-1.5">
-                        <Label className="text-gray-700">Guardian Mobile</Label>
+                        <Label className="">Guardian Mobile</Label>
                         <Input {...register("guardianMobile")} placeholder="9876543210" className="bg-white h-10" />
                         {errors.guardianMobile && <p className="text-red-500 text-xs mt-1">{errors.guardianMobile.message}</p>}
                     </div>
@@ -112,13 +112,13 @@ export default function Step3() {
             </Card>
 
             {/* Payment Preferences */}
-            <Card className="shadow-none border-gray-200 bg-gray-50/50">
+            <Card className="shadow-none border-gray-200 ">
                <CardHeader className="pb-3">
-                   <CardTitle className="text-base font-semibold text-gray-800">Payment Preference</CardTitle>
+                   <CardTitle className="text-base font-semibold ">Payment Preference</CardTitle>
                </CardHeader>
                <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
                  <div className="space-y-1.5">
-                   <Label className="text-gray-700">Plan Duration</Label>
+                   <Label className="">Plan Duration</Label>
                    <Select onValueChange={(v) => setValue("paymentPlan", v)} defaultValue={formData.paymentPlan}>
                      <SelectTrigger className="bg-white h-10"><SelectValue placeholder="Select Plan" /></SelectTrigger>
                      <SelectContent>
@@ -128,7 +128,7 @@ export default function Step3() {
                    {errors.paymentPlan && <p className="text-red-500 text-xs mt-1">{errors.paymentPlan.message}</p>}
                  </div>
                  <div className="space-y-1.5">
-                   <Label className="text-gray-700">Payment Mode</Label>
+                   <Label className="">Payment Mode</Label>
                    <Select onValueChange={(v) => setValue("paymentMode", v)} defaultValue={formData.paymentMode}>
                      <SelectTrigger className="bg-white h-10"><SelectValue placeholder="Select Mode" /></SelectTrigger>
                      <SelectContent>
